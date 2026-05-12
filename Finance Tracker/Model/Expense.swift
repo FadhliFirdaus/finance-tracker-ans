@@ -7,12 +7,17 @@
 
 import Foundation
 
-struct Expense {
-    let title:String
-    let amount:Double
-    let date:Date
+struct Expense: Identifiable, Codable {
+    var id = UUID()
+    var title:String
+    var amount:Double
+    var date:Date
+    var tag:[String]
 
-    static func getTest() -> Expense {
-        return Expense(title: "Test", amount: 100, date: Date())
+    init(title: String, amount: Double, date: Date, tag: [String] = []) {
+        self.title = title
+        self.amount = amount
+        self.date = date
+        self.tag = tag
     }
 }
