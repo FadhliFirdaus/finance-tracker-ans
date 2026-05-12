@@ -27,4 +27,8 @@ struct S {
             .first?
             .statusBarManager?.statusBarFrame.height ?? 0
     }
+
+    static var aspectRatio: CGFloat {
+        height == 0 ? 0 : width / height
+    }
 }

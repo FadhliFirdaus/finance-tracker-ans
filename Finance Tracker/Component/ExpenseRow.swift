@@ -12,10 +12,31 @@ struct ExpenseRow: View {
 
     var body: some View {
         HStack{
-            Text(expense.title)
-            Text("\(expense.amount)")
-            Text(expense.date.getStandardDate())
+            VStack(alignment: .leading){
+                Text(expense.title)
+                    .font(.title)
+                HStack {
+                    Text(expense.tag.map() { $0.lowercased() }.joined(separator: ", "))   .font(.footnote)
+                        .multilineTextAlignment(.leading)
+                    Spacer()
+                }
+                .frame(maxWidth: S.width/3)
+
+            }
+            .frame(alignment: .leading)
+            Spacer()
+            VStack (alignment: .trailing){
+                Spacer()
+                Text(expense.amount, format: .currency(code: "MYR").precision(.fractionLength(2)))
+                    .font(.title.bold())
+                Text(expense.date.getStandardDate())
+                    .font(.footnote)
+            }
+            .frame(alignment: .bottom)
         }
+        .padding(12)
+        .frame(width: S.width, height: 80, alignment: .leading)
+        .border(.bar)
     }
 }
 
